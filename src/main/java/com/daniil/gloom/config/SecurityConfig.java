@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/user/home")
                 .and()
                     .rememberMe()
+                    .userDetailsService(userService)
                 .and()
                     .logout()
                     .logoutUrl("/logout")

@@ -3,6 +3,9 @@ package com.daniil.gloom.domain;
 import com.daniil.gloom.domain.enums.Roles;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "usr")
@@ -12,9 +15,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotEmpty(message = "Username cannot be empty")
+    @Size(min = 4, max = 15,
+            message = "Username should be between 4 and 15 characters")
     private String username;
+
+    @NotEmpty(message = "Password cannot be empty")
     private String password;
+
+    @NotEmpty(message = "Email cannot be empty")
+    @Email(message = "Please, enter valid email")
     private String email;
+
     private boolean active;
 
     @Enumerated(EnumType.STRING)

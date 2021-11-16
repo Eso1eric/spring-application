@@ -4,10 +4,14 @@ import com.daniil.gloom.domain.User;
 import com.daniil.gloom.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -48,8 +52,10 @@ public class UserController {
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasAuthority('user:write')")
-    public String update(@ModelAttribute("user") User user,
+    public String update(@ModelAttribute("user") @Valid User user,
+                         BindingResult bindingResult,
                          @PathVariable("id") long id) {
+        if (bindingResult.hasErrors()) return "users/management/edit";
 
         userRepository.update(user.getUsername(), user.getPassword(),
                 user.getEmail(), id);

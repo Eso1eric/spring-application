@@ -1,6 +1,7 @@
 package com.daniil.gloom.repository;
 
 import com.daniil.gloom.domain.User;
+import com.daniil.gloom.domain.enums.Roles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

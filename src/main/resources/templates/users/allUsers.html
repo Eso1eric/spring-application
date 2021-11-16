@@ -9,6 +9,7 @@
     <tr>
         <td align="center">ID</td>
         <td align="center">Username</td>
+        <td align="center">Role</td>
         <td align="center">Password</td>
         <td align="center">Email</td>
         <td align="center">isActive</td>
@@ -17,9 +18,10 @@
         <td th:text="${user.id}">id</td>
         <td><a th:href="@{/user/{id}/management (id=${user.getId()})}"
                th:text="${user.username}">username</a></td>
-        <td th:text="${user.password}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.active}"></td>
+        <td th:text="${user.getRole().name()}">role</td>
+        <td th:text="${user.password}">password</td>
+        <td th:text="${user.email}">email</td>
+        <td th:text="${user.active}">active</td>
     </tr>
 </table>
 </body>
