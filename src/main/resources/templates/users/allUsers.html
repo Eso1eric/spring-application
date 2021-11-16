@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td align="center">ID</td>
+        <td align="center">Username</td>
+        <td align="center">Password</td>
+        <td align="center">Email</td>
+        <td align="center">isActive</td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">id</td>
+        <td><a th:href="@{/user/{id}/management (id=${user.getId()})}"
+               th:text="${user.username}">username</a></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.active}"></td>
+    </tr>
+</table>
+</body>
+</html>
